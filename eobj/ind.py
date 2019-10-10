@@ -1,7 +1,7 @@
 #ind     internal-node        for-internal-using  inherit-from-dict
 #anl     attr_name_list
 import efuntool.efuntool as eftl
-from primitive import *
+from eobj.primitive import *
 import types
 
 
