@@ -1,5 +1,5 @@
 from   eobj.primitive import *
-import eobj.ind 
+import eobj.ind as ind 
 import eobj.key_fplfuncs as kfplf
 import eobj.pathlist_funcs as plfunc
 import eobj.wfsmat as wfsmat
