@@ -1,11 +1,11 @@
-import eobj.kfplnd  
+import eobj.kfplnd as kfplnd 
 import eobj.attr_fplfuncs  as afplfuncs
 import eobj.key_fplfuncs as kfplfuncs
 import eobj.pathlist_funcs  as plfuncs
-import eobj.kastr
+import eobj.kastr as kastr
 from   eobj.primitive import *
-import eobj.wfsmat
-import eobj.orb
+import eobj.wfsmat as wfsmat
+import eobj.orb as orb
 from   eobj.key_fplfuncs import fplgetbracket_path
 
 import efuntool.etypetool as ettl
