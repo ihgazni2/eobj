@@ -1,73 +1,61 @@
-.. contents:: Table of Contents
-   :depth: 5
 
 
-*eobj*
-------------
-- use dot-tab-dot-tab to read big-json-like-struct
-- dot-chain-view
+from eobj.eobj import jobj2orb
+from eobj.eobj import wfstree,sdfstree,edfstree,wfs_brackets,sdfs_brackets,edfs_brackets
 
 
-Installation
-============
+#先写说明
 
-    ::
-    
-        $ pip3 install eobj
+# dot-chain-view  
+# big-json-like-struct
 
-Usage
-=====
-    
-read
-~~~~
-    
-    ::
-        
-        from eobj.eobj import jobj2orb
-        from eobj.eobj import wfstree,sdfstree,edfstree,wfs_brackets,sdfs_brackets,edfs_brackets
-        import esprima
-        jobj = esprima.parse("function tst() {a = b}").toDict()
 
+import esprima
+jobj = esprima.parse("function tst() {a = b}").toDict()
+
+{
+    type: "Program",
+    sourceType: "script",
+    body: [
         {
-            type: "Program",
-            sourceType: "script",
-            body: [
-                {
-                    type: "FunctionDeclaration",
-                    expression: False,
-                    isAsync: False,
-                    id: {
-                        type: "Identifier",
-                        name: "tst"
-                    },
-                    params: [],
-                    body: {
-                        type: "BlockStatement",
-                        body: [
-                            {
-                                type: "ExpressionStatement",
-                                expression: {
-                                    type: "AssignmentExpression",
-                                    operator: "=",
-                                    left: {
-                                        type: "Identifier",
-                                        name: "a"
-                                    },
-                                    right: {
-                                        type: "Identifier",
-                                        name: "b"
-                                    }
-                                }
+            type: "FunctionDeclaration",
+            expression: False,
+            isAsync: False,
+            id: {
+                type: "Identifier",
+                name: "tst"
+            },
+            params: [],
+            body: {
+                type: "BlockStatement",
+                body: [
+                    {
+                        type: "ExpressionStatement",
+                        expression: {
+                            type: "AssignmentExpression",
+                            operator: "=",
+                            left: {
+                                type: "Identifier",
+                                name: "a"
+                            },
+                            right: {
+                                type: "Identifier",
+                                name: "b"
                             }
-                        ]
-                    },
-                    generator: False
-                }
-            ]
+                        }
+                    }
+                ]
+            },
+            generator: False
         }
+    ]
+}
 
 
-        o = jobj2orb(jobj)
+
+
+o = jobj2orb(jobj)
+
 
         >>> o.
         o.            o.body        o.sourceType  o.type
@@ -112,13 +100,11 @@ read
         >>>
 
 
-wfstree(o,start_depth,end_depth)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-- wfstree(o)
-- wfstree(o,2,4)
 
-    ::
-        
+# wfstree(o,start_depth,end_depth)
+wfstree(o)
+wfstree(o,2,4)
+
         >>> wfstree(o)
         
         type
@@ -158,13 +144,12 @@ wfstree(o,start_depth,end_depth)
         body.l0_.generator
         >>>
 
-sdfstree(o,start_depth,end_depth)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-- sdfstree(o)
-- sdfstree(o,3,5)
 
-    ::
-        
+
+#sdfstree(o,start_depth,end_depth)
+sdfstree(o)
+sdfstree(o,3,5)
+
         >>> sdfstree(o)
         
         type
@@ -208,13 +193,12 @@ sdfstree(o,start_depth,end_depth)
         >>>
 
 
+
+
 edfstree(o,start_depth,end_depth)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-- edfstree(o)
-- edfstree(o,3,5)
-    
-    ::
-        
+edfstree(o)
+edfstree(o,3,5)
+
         >>> edfstree(o)
         type
         sourceType
@@ -258,13 +242,12 @@ edfstree(o,start_depth,end_depth)
         >>>
 
 
+
 wfs_brackets(o,start_depth,end_depth)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-- wfs_brackets(o)
-- wfs_brackets(o,2,4)
-    
-    ::
-        
+wfs_brackets(o)
+wfs_brackets(o,2,4)
+
+
         >>> wfs_brackets(o)
         
         ['type']
@@ -304,13 +287,13 @@ wfs_brackets(o,start_depth,end_depth)
         ['body'][0]['generator']
         >>>
 
+
+
+
 sdfs_brackets(o,start_depth,end_depth)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-- sdfs_brackets(o)
-- sdfs_brackets(o,3,5)
-    
-    ::
-        
+sdfs_brackets(o)
+sdfs_brackets(o,3,5)
+
         >>> sdfs_brackets(o)
         
         ['type']
@@ -355,12 +338,9 @@ sdfs_brackets(o,start_depth,end_depth)
 
 
 edfs_brackets(o,start_depth,end_depth)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-- edfs_brackets(o)
-- edfs_brackets(o,3,5)
-    
-    ::
-        
+edfs_brackets(o)
+edfs_brackets(o,3,5)
+
         >>> edfs_brackets(o)
         type
         sourceType
@@ -404,16 +384,11 @@ edfs_brackets(o,start_depth,end_depth)
         >>>
 
 
-SIGNS        
-=====
-- l0_,l1_,l2_...    means   list-element
-- t0_,t1_,t2_...    means   tuple-element
-- s0_,s1_,s2_...    means   set-element
-- 
 
-        
+####
+import ast
+import astunparse
 
-License
-=======
+t = ast.parse("[1,2,3]")
 
-- MIT
+

@@ -204,7 +204,7 @@ def ftag2fatag(ftag,ptype):
             '''
                 纯数字
             '''
-            ftag = greece_md['sigma'] + str(ftag)
+            fatag = greece_md['sigma'] + str(ftag)
         else:
             fatag = key2attr(ftag)
     return(fatag)
