@@ -17,6 +17,12 @@ Installation
 
 Usage
 =====
+
+restriction
+~~~~~~~~~~~
+- lower-case-greece-chars  cant appear in keys
+- because lower-case-greece-chars is used as control-chars in the-py-code
+- refer to `NOT-ALLOWED-CHARS-IN-KEY`_ and `ATTRIBUTE-NAMES`_ 
     
 read
 ~~~~
@@ -403,15 +409,136 @@ edfs_brackets(o,start_depth,end_depth)
         body.l0_.generator
         >>>
 
+NOT-ALLOWED-CHARS-IN-KEY
+========================
+- ['α', 'β', 'γ', 'δ', 'ε', 'ζ', 'η', 'θ', 'ι', 'κ', 'λ', 'μ', 'ν', 'ξ', 'ο', 'π', 'ρ', 'σ', 'τ', 'υ', 'φ', 'χ', 'ψ', 'ω']
 
-SIGNS        
-=====
+
+
+
+ATTRIBUTE-NAMES        
+===============
+
 - l0_,l1_,l2_...    means   list-element
 - t0_,t1_,t2_...    means   tuple-element
 - s0_,s1_,s2_...    means   set-element
-- 
-
+- σ0,σ1,σ2          means   keys-begin-with-a-number,which-is-not-permitted-in-attribute-name
+    
+    ::
         
+        >>> from eobj.eobj import jobj2orb
+        >>> from eobj.eobj import wfstree,sdfstree,edfstree,wfs_brackets,sdfs_brackets,edfs_brackets
+        >>>
+        >>>
+        >>> jobj = {
+        ...     0:"zero",
+        ...     1:"one"
+        ... }
+        >>>
+        >>> o = jobj2orb(jobj)
+        >>> o.
+        o.    o.σ0  o.σ1
+        >>> o.σ0
+        'zero'
+        >>> o.σ1
+        'one'
+        >>>
+
+
+- θ  means  dash-in-keys
+    
+    ::
+        
+        >>> jobj = {
+        ...     "a-b":"zero",
+        ...     "b-c":"one"
+        ... }
+        >>>
+        >>>
+        >>> o = jobj2orb(jobj)
+        >>> o.
+        o.     o.aθb  o.bθc
+        >>> o.aθb
+        'zero'
+        >>> o.bθc
+        'one'
+        >>>
+
+
+- ε means space-in-keys
+    
+    ::
+        
+        >>> jobj = {
+        ...     "a b":"zero",
+        ...     "b c":"one"
+        ... }
+        >>>
+        >>> o = jobj2orb(jobj)
+        >>> o.
+        o.     o.aεb  o.bεc
+        >>> o.aεb
+        'zero'
+        >>> o.bεc
+        'one'
+        >>>
+
+- π means pounds-in-keys
+    
+    ::
+        
+        >>> jobj = {
+        ...     "a#b":"zero",
+        ...     "b#c":"one"
+        ... }
+        >>> o = jobj2orb(jobj)
+        >>> o.
+        o.     o.aπb  o.bπc
+        >>> o.aπb
+        'zero'
+        >>> o.bπc
+        'one'
+        >>>
+
+
+- λ means  underscore
+    
+    ::
+        
+        >>> jobj = {
+        ...     "a_b":"zero",
+        ...     "b_c":"one"
+        ... }
+        >>>
+        >>> o = jobj2orb(jobj)
+        >>>
+        >>> o.
+        o.     o.aλb  o.bλc
+        >>> o.aλb
+        'zero'
+        >>> o.bλc
+        'one'
+        >>>
+
+
+- others  will-be-urlquoted
+    
+    ::
+        
+        >>> jobj = {
+        ...     "a@\x00b":"zero",
+        ...     "b@\x00c":"one"
+        ... }
+        >>> o = jobj2orb(jobj)
+        >>> o.
+        o.          o.aψ40ψ00b  o.bψ40ψ00c
+        >>> o.aψ40ψ00b
+        'zero'
+        >>> o.bψ40ψ00c
+        'one'
+        >>>  
+     
+
 
 License
 =======
