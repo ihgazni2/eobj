@@ -79,7 +79,7 @@ def setdflt_fpl(jobj,fpl,**kwargs):
                 # necessary ,when dflt = {} or []
                 de = copy.deepcopy(dflt)
                 this.__setitem__(key,de)
-            except Exception as e:
+            except Exception as err:
                 print(err)
                 #return(jobj)
             else:
