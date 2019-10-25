@@ -85,9 +85,17 @@ def _plcmp(pl0,pl1):
 
 
 def plcmp(pl0,pl1,**kwargs):
+    '''
+        plcmp([0,1,2],[0,1])
+        #> 1
+        plcmp([1],[0,1])
+        #> 1
+        plcmp([0,0],[0,1])
+        #> -1
+    '''
     lngth0 = len(pl0)
     lngth1 = len(pl1)
-    break_tie_longer_bigger = eftl.kwargs("break_tie_longer_bigger",True,**kwargs)
+    break_tie_longer_bigger = eftl.dflt_kwargs("break_tie_longer_bigger",True,**kwargs)
     break_tie = 1 if(break_tie_longer_bigger) else -1
     if(lngth0 == lngth1):
         rslt = _plcmp(pl0,pl1)
