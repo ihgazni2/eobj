@@ -5,7 +5,7 @@ requirements = []
 
 setup(
       name="eobj",
-      version = "0.0.9", #@version@#
+      version = "0.0.10", #@version@#
       description="handle,.in progressing..,APIs",
       author="ihgazni2",
       url="https://github.com/ihgazni2/eobj",
